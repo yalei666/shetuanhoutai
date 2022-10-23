@@ -5,6 +5,7 @@ import shouye from '../views/index/shouye.vue'
 import Layout from '../views/layout/Layout.vue'
 import shetuanliebiao from '../components/shetuanliebiao/shetuanliebiao.vue'
 import shettuansectioninfo from '../components/shettuansectioninfo/shettuansectioninfo.vue'
+import handleshetuanjoin   from '../components/handleshetuanjoin/handleshetuanjoin.vue'
 Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location, onResolve, onReject) {
@@ -37,6 +38,15 @@ const routes = [
     children:[
       {path:'partyList',component:shetuanliebiao,name:'社团基本信息'},
       {path:'sectioninfo',component:shettuansectioninfo,name:'社团部门结构'}
+    ]    
+  },
+  {
+    path:'/applyjoin',
+    component:Layout,
+    redirect:'noredirect',
+    name:'社团管理',
+    children:[
+      {path:'handleshetuanjoin',component:handleshetuanjoin,name:'入社申请管理'},
     ]    
   }
 ]
