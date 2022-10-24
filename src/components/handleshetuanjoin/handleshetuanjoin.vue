@@ -209,7 +209,71 @@
 		    <el-button @click="yimiandialogvisible = false">取 消</el-button>
 		    <el-button type="primary" @click="hangdleyimianUp">确 定</el-button>
 		  </span>
-		</el-dialog>				
+		</el-dialog>	
+		<el-dialog
+		  title="处理二面"
+		  :visible.sync="ermiandialogvisible"
+		  width="50%">
+		  <el-row>
+			<el-col :span="24">
+			  <el-descriptions class="margin-top" title="申请信息" :column="3"  border>
+			    <el-descriptions-item>
+			      <template slot="label">
+			        <i class="el-icon-user"></i>
+			        用户名
+			      </template>
+			      {{userInfo.realname}}
+			    </el-descriptions-item>
+			    <el-descriptions-item>
+			      <template slot="label">
+			        <i class="el-icon-school"></i>
+			        学号
+			      </template>
+			      {{userInfo.xuehao}}
+			    </el-descriptions-item>
+			    <el-descriptions-item>
+			      <template slot="label">
+			        <i class="el-icon-location-outline"></i>
+			        班级
+			      </template>
+			      {{userInfo.userclass}}
+			    </el-descriptions-item>
+			    <el-descriptions-item>
+			      <template slot="label">
+			        <i class="el-icon-tickets"></i>
+			        申请说明
+			      </template>
+			      {{nowrow.applytext}}
+			    </el-descriptions-item>
+			  </el-descriptions>												
+			</el-col>					  	
+		  </el-row>
+		  <el-divider></el-divider>
+		  <el-row>
+			<el-col :span="24">
+				<el-form   :model="ermianform" label-position="top" label-width="240px">
+				  <el-form-item label="是否通过二面，同意加入" prop="shifoutongguo">
+					    <el-radio-group v-model="ermianform.shifoutongguo">
+					      <el-radio label="1">同意加入</el-radio>
+					      <el-radio label="0">不同意加入</el-radio>
+					    </el-radio-group>
+				  </el-form-item>
+				  <el-form-item label="说明" prop="shuoming">
+				    <el-input 
+				    	type="textarea"
+				    	v-model="ermianform.shuoming" 
+				    	placeholder="如果通过，请告知注意事项" 
+				    	:autosize="{ minRows: 2, maxRows: 4}">
+				    </el-input>
+				  </el-form-item>
+				</el-form>														
+			</el-col>					  	
+		  </el-row>		  
+		  <span slot="footer" class="dialog-footer">
+		    <el-button @click="ermiandialogvisible = false">取 消</el-button>
+		    <el-button type="primary" @click="handleermianUp">确 定</el-button>
+		  </span>
+		</el-dialog>					
 	</div>	
 </template>
 <script type="text/javascript">
@@ -228,6 +292,7 @@ import { mapGetters } from 'vuex'
 	      	tablelist:[],
 	      	chushendialogvisible:false,
 	      	yimiandialogvisible:false,
+	      	ermiandialogvisible:false,
 	      	nowrow:'',
 	      	chushenform:{
 	      		shifoutongguo:'0',
@@ -237,6 +302,10 @@ import { mapGetters } from 'vuex'
 	      		shifoutongguo:'0',
 	      		shuoming:""	      		
 	      	},
+	      	ermianform:{
+	      		shifoutongguo:'0',
+	      		shuoming:""	      		
+	      	},	      	
 	      	nowdata:''
 	      };
 	    },
@@ -321,6 +390,8 @@ import { mapGetters } from 'vuex'
 					this.chushendialogvisible = true 
 				}else if(val == 3){
 					this.yimiandialogvisible = true 
+				}else if(val == 4){
+					this.ermiandialogvisible = true 		
 				}
 			},
 			hangdlechushenUp(){
@@ -356,7 +427,26 @@ import { mapGetters } from 'vuex'
 						that.getbumenjoinlist(that.nowdata);
 					}		
 				})		
-			},						
+			},
+			handleermianUp(){
+				var that = this 
+				this.ermianform.id        = this.nowrow.id
+				this.ermianform.partyid   = this.nowrow.joinpartyid
+				this.ermianform.sectionid = this.nowrow.joinsectionid
+				this.ermianform.realname  = this.userInfo.realname
+				this.ermianform.userid    = this.userInfo.id
+				global.post(api.handleermianbiaodan,this.ermianform,function(res){
+					var data = res.data
+					if(data.resultCode == 1){
+						that.$message({
+							type:'success',
+							message: '处理成功',
+						})
+						that.ermiandialogvisible = false
+						that.getbumenjoinlist(that.nowdata);
+					}		
+				})					
+			}						
 		},
 	    mounted(){
 			this.getfuzeshetuanlist()				    	

@@ -99,7 +99,6 @@
 		    </el-form-item>
 		  </el-form>
 		  <div slot="footer" class="dialog-footer">
-		    
 		    <el-button type="primary" @click="handlesectionupload" :disabled="tijiao_button_status" :loading="tijiao_button_status">确 定</el-button>
 		    <el-button>取 消</el-button>
 		  </div>					

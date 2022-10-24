@@ -21,5 +21,9 @@ export const api   ={
 	//初审表单上传
 	'handlechushenbiaodan':nodeApiBaseUrl+"/shetuan/handlechushenbiaodan",
 	//一面表单上传
-	'handleyimianbiaodan':nodeApiBaseUrl+"/shetuan/handleyimianbiaodan"	
+	'handleyimianbiaodan':nodeApiBaseUrl+"/shetuan/handleyimianbiaodan",	
+	//二面表单上传
+	'handleermianbiaodan':nodeApiBaseUrl+"/shetuan/handleermianbiaodan",
+	//获取社团成员列表 handlepartyrenyuan
+	'getbumenchengyuanlist':nodeApiBaseUrl+"/shetuan/getbumenchengyuanlist",		
 }
