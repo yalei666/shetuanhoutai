@@ -58,7 +58,16 @@ const routes = [
     children:[
       {path:'partymangerenyuan',component:handlepartyrenyuan,name:'本社人员管理'},
     ]    
-  },  
+  },
+  {
+    path:'/weihu',
+    component:Layout,
+    redirect:'noredirect',
+    name:"网站维护",
+    children:[
+      {path:'',component:,name:''}
+    ]
+  }  
 ]
 
 const router = new VueRouter({
