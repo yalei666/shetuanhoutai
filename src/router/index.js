@@ -6,7 +6,8 @@ import Layout from '../views/layout/Layout.vue'
 import shetuanliebiao from '../components/shetuanliebiao/shetuanliebiao.vue'
 import shettuansectioninfo from '../components/shettuansectioninfo/shettuansectioninfo.vue'
 import handleshetuanjoin   from '../components/handleshetuanjoin/handleshetuanjoin.vue'
-import handlepartyrenyuan   from '../components/handlepartyrenyuan/handlepartyrenyuan.vue'
+import handlepartyrenyuan  from '../components/handlepartyrenyuan/handlepartyrenyuan.vue'
+import banjiweihu          from '../components/banjiweihu/banjiweihu.vue'
 Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location, onResolve, onReject) {
@@ -65,7 +66,7 @@ const routes = [
     redirect:'noredirect',
     name:"网站维护",
     children:[
-      {path:'',component:,name:''}
+      {path:'banjiweihu',component:banjiweihu,name:'班级结构维护'}
     ]
   }  
 ]

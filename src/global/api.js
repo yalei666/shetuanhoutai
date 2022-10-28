@@ -24,6 +24,10 @@ export const api   ={
 	'handleyimianbiaodan':nodeApiBaseUrl+"/shetuan/handleyimianbiaodan",	
 	//二面表单上传
 	'handleermianbiaodan':nodeApiBaseUrl+"/shetuan/handleermianbiaodan",
-	//获取社团成员列表 handlepartyrenyuan
-	'getbumenchengyuanlist':nodeApiBaseUrl+"/shetuan/getbumenchengyuanlist",		
+	// 获取社团成员列表 handlepartyrenyuan
+	'getbumenchengyuanlist':nodeApiBaseUrl+"/shetuan/getbumenchengyuanlist",
+	//获取班级列表 一级 banjiweihu.vue 
+	'getbanjilistyiji':nodeApiBaseUrl+"/shetuan/getbanjilistyiji",
+	//处理班级名称修改
+	'editbanjiname':nodeApiBaseUrl+"/shetuan/editbanjiname"	
 }
